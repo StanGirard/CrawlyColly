@@ -16,6 +16,8 @@ However, it is a very fast & efficient way to get thousands of pages in seconds.
 - Run with `go run *.go`
 - The pages will be writen in urls_<www.yourwebsite.com>.csv
 
+At the end of your crawling if you want to merge all the files just run `for filename in $(ls *.csv); do sed 1d $filename >> final.csv; done`
+
 ## Disclaimer
 
 Please be advised that even if this crawler doesn't visit every pages of a website, it can be very intensive for large websites.
