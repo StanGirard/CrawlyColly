@@ -1,9 +1,9 @@
 package main
 
 import (
-	"strings"
-
+	"fmt"
 	"github.com/gocolly/colly"
+	"strings"
 )
 
 func after(value string, a string) string {
@@ -63,10 +63,14 @@ func testSitemapURLS(website string) []string {
 			site = append(site, r.Request.URL.String())
 		}
 	})
-	sitemapURLS := []string{"/sitemap.xml", "/sitemap_news.xml", "/sitemap_index.xml"}
-	e.Visit("https://" + website + sitemapURLS[0])
-	e.Visit("https://" + website + sitemapURLS[1])
-	e.Visit("https://" + website + sitemapURLS[2])
+	sitemapURLS := []string{"/sitemap.xml", "/sitemap_news.xml", "/sitemap_index.xml", "/sitemap-index.xml", "/sitemapindex.xml", 
+	"/sitemap-news.xml", "/post-sitemap.xml", "/page-sitemap.xml", "/portfolio-sitemap.xml", "home_slider-sitemap.xml", "category-sitemap.xml", 
+	"/author-sitemap.xml"}
+	for i := range sitemapURLS {
+		e.Visit("https://" + website + sitemapURLS[i])
+
+	}
+
 	e.Wait()
 	return site
 }
@@ -78,5 +82,7 @@ func getAllSitemap(website string) []string {
 	sitemap = testSitemapURLS(website)
 	together := make([]string, len(robots)+len(sitemap))
 	together = unique(append(together, append(sitemap, robots...)...))
+	fmt.Println("Found ", len(together), " sitemaps")
+	fmt.Println(together)
 	return together
 }
