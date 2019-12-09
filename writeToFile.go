@@ -8,26 +8,26 @@ import (
 func write_to_file(d []string, website string) {
 
 	if len(d) > 0 {
-	f, err := os.Create("urls_" + website + ".csv")
-	if err != nil {
-		fmt.Println(err)
-		f.Close()
-		return
-	}
+		f, err := os.Create("urls/urls_" + website + ".csv")
+		if err != nil {
+			fmt.Println(err)
+			f.Close()
+			return
+		}
 
-	for _, v := range d {
-		fmt.Fprintln(f, v)
+		for _, v := range d {
+			fmt.Fprintln(f, v)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+		}
+		err = f.Close()
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
-	}
-	err = f.Close()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("file written successfully")
+		fmt.Println("file written successfully")
 	} else {
 		fmt.Println("Empty Sitemap")
 	}

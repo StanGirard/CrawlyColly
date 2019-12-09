@@ -63,9 +63,9 @@ func testSitemapURLS(website string) []string {
 			site = append(site, r.Request.URL.String())
 		}
 	})
-	sitemapURLS := []string{"/sitemap.xml", "/sitemap_news.xml", "/sitemap_index.xml", "/sitemap-index.xml", "/sitemapindex.xml", 
-	"/sitemap-news.xml", "/post-sitemap.xml", "/page-sitemap.xml", "/portfolio-sitemap.xml", "home_slider-sitemap.xml", "category-sitemap.xml", 
-	"/author-sitemap.xml"}
+	sitemapURLS := []string{"/sitemap.xml", "/sitemap_news.xml", "/sitemap_index.xml", "/sitemap-index.xml", "/sitemapindex.xml",
+		"/sitemap-news.xml", "/post-sitemap.xml", "/page-sitemap.xml", "/portfolio-sitemap.xml", "home_slider-sitemap.xml", "category-sitemap.xml",
+		"/author-sitemap.xml"}
 	for i := range sitemapURLS {
 		e.Visit("https://" + website + sitemapURLS[i])
 

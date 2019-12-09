@@ -12,7 +12,7 @@ func crawl(website string, urls string) []string {
 	knownUrls := []string{}
 
 	c := colly.NewCollector(colly.Async(true))
-	c.Limit(&colly.LimitRule{DomainGlob: "*", Parallelism: 20})
+	c.Limit(&colly.LimitRule{DomainGlob: "*", Parallelism: 100})
 	// Create a callback on the XPath query searching for the URLs
 	c.OnXML("//url/loc", func(e *colly.XMLElement) {
 		if len(e.Text) > 0 {
