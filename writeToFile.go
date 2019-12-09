@@ -6,6 +6,8 @@ import (
 )
 
 func write_to_file(d []string, website string) {
+
+	if len(d) > 0 {
 	f, err := os.Create("urls_" + website + ".csv")
 	if err != nil {
 		fmt.Println(err)
@@ -26,4 +28,8 @@ func write_to_file(d []string, website string) {
 		return
 	}
 	fmt.Println("file written successfully")
+	} else {
+		fmt.Println("Empty Sitemap")
+	}
+
 }
