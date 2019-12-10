@@ -13,7 +13,7 @@ However, it is a very fast & efficient way to get thousands of pages in seconds.
 ## Use the crawler
 
 - Create the folder `urls` with the command `mkdir urls`
-- Set the websites your want to crawl in a folder like `urls_test`, one url per line
+- Set the websites your want to crawl in a file like `urls_test`, one url per line
 - Compile with `go build *.go`
 - Run with `cat urls_test | ./crawl` or if not compiled `cat urls_test | go run *.go`
 - The websites' urls will be writen in urls_<www.yourwebsite.com>.csv
