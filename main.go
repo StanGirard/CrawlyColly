@@ -31,7 +31,7 @@ func main() {
 	number := 0
 	var waitgroup sync.WaitGroup
 
-	for i := 0; i < 2; i++ {
+	for i := 0; i < 10; i++ {
 		go func() {
 			for {
 				domain := <-website
