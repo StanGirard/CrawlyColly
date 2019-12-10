@@ -1,9 +1,8 @@
 package main
 
 import (
-	"strings"
-
 	"github.com/gocolly/colly"
+	"strings"
 )
 
 func after(value string, a string) string {
