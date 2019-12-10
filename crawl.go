@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/gocolly/colly"
@@ -20,10 +19,11 @@ func crawl(website string, urls string) []string {
 		}
 
 	})
-
-	c.OnResponse(func(e *colly.Response) {
-		fmt.Println(e.Request.URL)
-	})
+	/*
+		c.OnResponse(func(e *colly.Response) {
+			fmt.Println(e.Request.URL)
+		})
+	*/
 	c.OnXML("//sitemap/loc", func(e *colly.XMLElement) {
 		c.Visit(e.Text)
 	})
@@ -50,8 +50,6 @@ func crawlAll(domain string, sitemap []string) []string {
 	known := []string{}
 	for _, st := range sitemap {
 		result := crawl(domain, st)
-		println(st)
-		println(len(result), ": Length")
 		known = append(known, result...)
 	}
 	return known

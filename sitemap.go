@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
-	"github.com/gocolly/colly"
 	"strings"
+
+	"github.com/gocolly/colly"
 )
 
 func after(value string, a string) string {
@@ -82,7 +82,7 @@ func getAllSitemap(website string) []string {
 	sitemap = testSitemapURLS(website)
 	together := make([]string, len(robots)+len(sitemap))
 	together = unique(append(together, append(sitemap, robots...)...))
-	fmt.Println("Found ", len(together), " sitemaps")
-	fmt.Println(together)
+	//fmt.Println("Found ", len(together), " sitemaps")
+	//fmt.Println(together)
 	return together
 }

@@ -1,11 +1,35 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
 
-func main() {
-	website := "www.liberation.fr"
+	"os"
+	"time"
+)
+
+func getSitemap(queue chan string) {
+
+	website := <-queue
 	crawled := crawlAll(website, getAllSitemap(website))
 	uniqueCrawled := unique(crawled)
-	fmt.Println("Visited ", len(uniqueCrawled), " pages on ", website)
-	write_to_file(crawled, website)
+	message := write_to_file(uniqueCrawled, website, len(uniqueCrawled))
+	fmt.Println(message)
+
+}
+
+func main() {
+
+	website := make(chan string)
+	for i := 0; i < 4; i++ {
+		go getSitemap(website)
+	}
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		line := scanner.Text()
+		
+		website <- line
+	}
+	time.Sleep(10 * time.Second)
+
 }
