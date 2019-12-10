@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func write_to_file(d []string, website string, number int) string {
+func write_to_file(d []string, website string, number int) (string, int) {
 
 	message := ""
 	if len(d) > 0 {
@@ -15,20 +15,20 @@ func write_to_file(d []string, website string, number int) string {
 			fmt.Println(err)
 
 			f.Close()
-			return "Impossible to open the file: " + "urls/urls_" + website + ".csv"
+			return "Impossible to open the file: " + "urls/urls_" + website + ".csv", 0
 		}
 
 		for _, v := range d {
 			fmt.Fprintln(f, v)
 			if err != nil {
 				fmt.Println(err)
-				return "Impossible to write the file: " + "urls/urls_" + website + ".csv"
+				return "Impossible to write the file: " + "urls/urls_" + website + ".csv", 0
 			}
 		}
 		err = f.Close()
 		if err != nil {
 			fmt.Println(err)
-			return "Impossible to write the file: " + "urls/urls_" + website + ".csv"
+			return "Impossible to write the file: " + "urls/urls_" + website + ".csv", 0
 		}
 		message += "--------------------------\n"
 
@@ -38,6 +38,6 @@ func write_to_file(d []string, website string, number int) string {
 
 	}
 	message += "--------------------------\n"
-	return message
+	return message, number
 
 }
