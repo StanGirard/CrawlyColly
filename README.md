@@ -1,4 +1,4 @@
-# CrawlyColly Fast Crawler
+#  Fast Crawler
 
 The purpose of this crawler is to get all the pages of a website very quickly
 
